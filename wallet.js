@@ -39,9 +39,15 @@ const transactions = [
 ];
 
 const Transaction = {
+  all: transactions,
+  add(transaction) {
+    Transaction.all.push(transaction);
+    App.reload();
+  },
+
   incomes() {
     let income = 0;
-    transactions.forEach((transaction) => {
+    Transaction.all.forEach((transaction) => {
       if (transaction.amount > 0) {
         income += transaction.amount;
       }
@@ -50,7 +56,7 @@ const Transaction = {
   },
   expenses() {
     let expense = 0;
-    transactions.forEach((transaction) => {
+    Transaction.all.forEach((transaction) => {
       if (transaction.amount < 0) {
         expense += transaction.amount;
       }
@@ -111,11 +117,30 @@ const DOM = {
       Transaction.total()
     );
   },
+  ClearTransactions() {
+    DOM.transactionsContainer.innerHTML = "";
+  },
 };
 
-//method from collections object
-transactions.forEach(function (transaction) {
-  DOM.AddTransaction(transaction);
-});
+const App = {
+  init() {
+    //method from collections object
+    Transaction.all.forEach((transaction) => {
+      DOM.AddTransaction(transaction);
+    });
 
-DOM.UpdateBalance();
+    DOM.UpdateBalance();
+  },
+  reload() {
+    DOM.ClearTransactions();
+    App.init();
+  },
+};
+
+App.init();
+Transaction.add({
+  id: 11,
+  description: "Teste",
+  amount: -000001,
+  date: "26/26/2626",
+});
