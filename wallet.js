@@ -15,38 +15,50 @@ const transactions = [
   {
     id: 1,
     description: "Power",
-    amount: -50000,
+    amount: -50001,
     date: "26/01/2021",
   },
   {
     id: 2,
     description: "Website",
-    amount: 1000000,
+    amount: 500000,
     date: "26/01/2021",
   },
   {
     id: 3,
     description: "Internet",
-    amount: -5489000,
+    amount: -20012,
     date: "26/01/2021",
   },
   {
     id: 4,
     description: "Water",
-    amount: -300900,
+    amount: 200000,
     date: "26/01/2021",
   },
 ];
 
 const Transaction = {
   incomes() {
-    //sum incomes
+    let income = 0;
+    transactions.forEach((transaction) => {
+      if (transaction.amount > 0) {
+        income += transaction.amount;
+      }
+    });
+    return income;
   },
   expenses() {
-    //sum expenses
+    let expense = 0;
+    transactions.forEach((transaction) => {
+      if (transaction.amount < 0) {
+        expense += transaction.amount;
+      }
+    });
+    return expense;
   },
   total() {
-    //incomes - expenses
+    return Transaction.incomes() + Transaction.expenses();
   },
 };
 
@@ -66,15 +78,16 @@ const Utils = {
     return signal + value;
   },
 };
+
 //Show transactions in HTML
 const DOM = {
   transactionsContainer: document.querySelector("#data-table tbody"),
-  addTransaction(transaction, index) {
+  AddTransaction(transaction, index) {
     const tr = document.createElement("tr");
-    tr.innerHTML = DOM.innerHTMLtransaction(transaction);
+    tr.innerHTML = DOM.InnerHTMLtransaction(transaction);
     DOM.transactionsContainer.appendChild(tr);
   },
-  innerHTMLtransaction(transaction) {
+  InnerHTMLtransaction(transaction) {
     const CSSClass = transaction.amount > 0 ? "income" : "expense";
     const amount = Utils.formatCurrency(transaction.amount);
     const html = `
@@ -87,9 +100,22 @@ const DOM = {
     `;
     return html;
   },
+  UpdateBalance() {
+    document.getElementById("incomeDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.incomes()
+    );
+    document.getElementById("expenseDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.expenses()
+    );
+    document.getElementById("totalDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.total()
+    );
+  },
 };
 
 //method from collections object
 transactions.forEach(function (transaction) {
-  DOM.addTransaction(transaction);
+  DOM.AddTransaction(transaction);
 });
+
+DOM.UpdateBalance();
