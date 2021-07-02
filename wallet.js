@@ -11,33 +11,21 @@ const Modal = {
   },
 };
 
+const Storage = {
+  get() {
+    return JSON.parse(localStorage.getItem("my-wallet:transactions")) || [];
+  },
+  set(transactions) {
+    localStorage.setItem(
+      "my-wallet:transactions",
+      JSON.stringify(transactions)
+    );
+  },
+};
+
 const Transaction = {
-  all: [
-    {
-      id: 1,
-      description: "Power",
-      amount: -50001,
-      date: "26/01/2021",
-    },
-    {
-      id: 2,
-      description: "Website",
-      amount: 500000,
-      date: "26/01/2021",
-    },
-    {
-      id: 3,
-      description: "Internet",
-      amount: -20012,
-      date: "26/01/2021",
-    },
-    {
-      id: 4,
-      description: "Water",
-      amount: 200000,
-      date: "26/01/2021",
-    },
-  ],
+  //Storage.get(),
+  all: [],
 
   add(transaction) {
     Transaction.all.push(transaction);
@@ -76,9 +64,8 @@ const Transaction = {
 
 const Utils = {
   formatCurrency(value) {
+    console.log(value);
     const signal = Number(value) < 0 ? "-" : "";
-
-    value = String(value).replace(/\D/g, "");
 
     value = Number(value) / 100;
 
@@ -88,10 +75,12 @@ const Utils = {
     });
     return signal + value;
   },
+
   formatAmount(value) {
     value = Number(value) * 100;
-    return value;
+    return Math.round(value);
   },
+
   formatDate(date) {
     const splitedDate = date.split("-");
     return `${splitedDate[2]}/${splitedDate[1]}/${splitedDate[0]}`;
@@ -192,19 +181,19 @@ const Form = {
 
 const App = {
   init() {
-    //method from collections object
+    //method forEach is from collection object
 
     //Transaction.all.forEach(function(transaction, index) {
     //  DOM.addTransaction(transaction, index)
     //});
 
-    Transaction.all.forEach((transaction, index) => {
-      DOM.addTransaction(transaction, index);
-    });
+    //Transaction.all.forEach((transaction, index) => {
+    //  DOM.addTransaction(transaction, index);
+    //});
 
-    //Transaction.all.forEach(DOM.addTransaction)
-
+    Transaction.all.forEach(DOM.addTransaction);
     DOM.updateBalance();
+    Storage.set(Transaction.all);
   },
   reload() {
     DOM.clearTransactions();
