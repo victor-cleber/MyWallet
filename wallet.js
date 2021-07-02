@@ -13,7 +13,7 @@ const Modal = {
 
 const Storage = {
   get() {
-    return JSON.parse(localStorage.getItem("my-wallet:transactions")) || [];
+    return JSON.parse(localStorage.getItem("my-wallet:transactions") || []);
   },
   set(transactions) {
     localStorage.setItem(
@@ -65,7 +65,7 @@ const Transaction = {
 const Utils = {
   formatCurrency(value) {
     console.log(value);
-    const signal = Number(value) < 0 ? "-" : "";
+    // const signal = Number(value) < 0 ? "-" : "";
 
     value = Number(value) / 100;
 
@@ -73,7 +73,7 @@ const Utils = {
       style: "currency",
       currency: "NZD",
     });
-    return signal + value;
+    return value;
   },
 
   formatAmount(value) {
