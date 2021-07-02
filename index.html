@@ -64,15 +64,15 @@
         <div class="modal">
             <div id="form">
                 <h2>New transaction</h2>
-                <form action="">
+                <form action="" onsubmit="Form.submit(event)">
                     <div class="input-group">
                         <label for="description" class="sr-only">Description</label>
                         <input id="description" name="description" type="text" placeholder="Description">
                     </div>
                     <div class="input-group">
                         <label for="amount" class="sr-only">Amount</label>
-                        <input id="amount" name="amount" type="number" placeholder="0.00" step="0.05">
-                        <small class="help">Use - (negative) for and . for decimals</small>
+                        <input id="amount" name="amount" type="number" placeholder="0.00" step="0.01">
+                        <small class="help">Use - (negative) for expanses and . for decimal cases</small>
                     </div>
                     <div class="input-group">
                         <label class="sr-only" for="date">Date</label>

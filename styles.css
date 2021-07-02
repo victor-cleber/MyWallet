@@ -70,6 +70,7 @@ button:hover {
   margin-bottom: 0.8rem;
   display: inline-block;
 }
+
 .button.cancel {
   color: var(--red);
   border: 2px var(--red) solid;
