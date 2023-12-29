@@ -11,6 +11,8 @@ This project uses the following technologies:
 - HTML
 - CSS
 - JavaScript
+- Docker
+- Azure DevOps
 
 ## 💻 Project
 
