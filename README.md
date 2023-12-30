@@ -18,6 +18,16 @@ This project uses the following technologies:
 
 My-wallet is a web solution for personal finances, including operations for creating, update and delete transactions, list of incomes, expenditures and balance. 💰
 
+## Usage
+
+| Folder                         | Description                                              |
+| :----------------------------- | :------------------------------------------------------- |
+| [Docker](https://github.com/victor-cleber/MyWallet/tree/main/src/.docker)     | Using Dockerfile  |
+| [Azure DevOps](https://github.com/victor-cleber/MyWallet/tree/main/src/.ado)     | Using CI/CD Azure DevOps  |
+|
+
+
+
 ## :memo: License
 
 This project is under an MIT license. See more details in [LICENSE](LICENSE.md) for more information.
