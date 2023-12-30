@@ -6,10 +6,6 @@
 
 ## 🚀 Technologies
 
-This project uses the following technologies:
-
-
-
 | Technology                         | Description                                              |
 | :----------------------------- | :------------------------------------------------------- |
 | [HTML](https://github.com/victor-cleber/MyWallet/tree/main/src/Web)     | Web project using HTML, CSS and JavaScript  |
