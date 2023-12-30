@@ -24,7 +24,6 @@ My-wallet is a web solution for personal finances, including operations for crea
 | :----------------------------- | :------------------------------------------------------- |
 | [Docker](https://github.com/victor-cleber/MyWallet/tree/main/src/.docker)     | Using Dockerfile  |
 | [Azure DevOps](https://github.com/victor-cleber/MyWallet/tree/main/src/.ado)     | Using CI/CD Azure DevOps  |
-|
 
 
 
