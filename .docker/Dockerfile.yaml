@@ -1,0 +1,24 @@
+FROM debian
+
+RUN apt-get update && apt-get upgrade \
+    && apt-get install -y  curl apache2 zip  \
+    && apt-get clean
+
+ENV APACHE_LOCK_DIR="var/lock"
+ENV APACHE_PID_FILE="/var/run/apache2.pid"
+ENV APACHE_RUN_USER="www-data"
+ENV APACHE_RUN_GROUP="www-data"
+ENV APACHE_LOG_DIR="/var/log/apache2"
+
+RUN curl -L -O https://github.com/victor-cleber/MyWallet/archive/main.zip 
+RUN unzip main.zip 
+RUN mv MyWallet-main/src/Web/*  /var/www/html
+RUN rm -Rf MyWallet-main main.zip
+
+LABEL description = "Apache webserver 1.0"
+
+EXPOSE 80
+
+ENTRYPOINT ["/usr/sbin/apachectl"]
+
+CMD ["-D", "FOREGROUND"]
